@@ -1,30 +1,29 @@
 "use strict";
 
 function main() {
-    // Get a WebGL context
     var canvas = document.querySelector("#canvas");
     var gl = canvas.getContext("webgl");
     if (!gl) {
         return;
     }
 
-    // Setup GLSL program
+    // Atur program GLSL
     var program = webglUtils.createProgramFromScripts(gl, ["vertex-shader-2d", "fragment-shader-2d"]);
     gl.useProgram(program);
 
-    // Look up where the vertex data needs to go
+    // Cari lokasi atribut posisi
     var positionLocation = gl.getAttribLocation(program, "a_position");
 
-    // Lookup uniforms
+    // Cari lokasi uniform
     var resolutionLocation = gl.getUniformLocation(program, "u_resolution");
     var colorLocation = gl.getUniformLocation(program, "u_color");
     var translationLocation = gl.getUniformLocation(program, "u_translation");
 
-    // Create a buffer to put positions in
+    // Buat buffer untuk menyimpan posisi
     var positionBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
-    // Set geometry (vertices of the "F", "I", and "N")
+    // Atur geometri (vertex dari "F", "I", dan "N")
     setGeometry(gl);
 
     var translation = [0, 0];
@@ -32,116 +31,116 @@ function main() {
 
     drawScene();
 
-    // Draw the scene
+    // Gambar adegan
     function drawScene() {
         webglUtils.resizeCanvasToDisplaySize(gl.canvas);
 
-        // Tell WebGL how to convert from clip space to pixels
+        // Beritahu WebGL cara mengubah dari ruang clip ke piksel
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
 
-        // Clear the canvas
+        // Bersihkan kanvas
         gl.clear(gl.COLOR_BUFFER_BIT);
 
-        // Tell it to use our program (pair of shaders)
+        // Beritahu WebGL untuk menggunakan program kami (pasangan shader)
         gl.useProgram(program);
 
-        // Turn on the attribute
+        // Aktifkan atribut
         gl.enableVertexAttribArray(positionLocation);
 
-        // Bind the position buffer
+        // Hubungkan buffer posisi
         gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
 
-        // Tell the attribute how to get data out of positionBuffer (ARRAY_BUFFER)
-        var size = 2; // 2 components per iteration
-        var type = gl.FLOAT; // the data is 32bit floats
-        var normalize = false; // don't normalize the data
-        var stride = 0; // move forward size * sizeof(type) each iteration
-        var offset = 0; // start at the beginning of the buffer
+        // Beritahu atribut cara mengambil data dari positionBuffer (ARRAY_BUFFER)
+        var size = 2; // 2 komponen per iterasi
+        var type = gl.FLOAT; // data adalah float 32bit
+        var normalize = false; // tidak normalisasi data
+        var stride = 0; // maju ukuran * sizeof(type) setiap iterasi
+        var offset = 0; // mulai dari awal buffer
         gl.vertexAttribPointer(positionLocation, size, type, normalize, stride, offset);
 
-        // Set the resolution
+        // Atur resolusi
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
 
-        // Set the color
+        // Atur warna
         gl.uniform4fv(colorLocation, color);
 
-        // Set the translation
+        // Atur translasi
         gl.uniform2fv(translationLocation, translation);
 
-        // Draw the geometry
+        // Gambar geometri
         var primitiveType = gl.TRIANGLES;
-        var count = 36; // 6 triangles for "F", 2 for "I", 6 for "N"
+        var count = 36; // 6 segitiga untuk "F", 2 untuk "I", 6 untuk "N"
         gl.drawArrays(primitiveType, 0, count);
     }
 }
 
-// Define the vertices for the letters "F", "I", and "N" using triangles
+// Definisikan vertex untuk huruf "F", "I", dan "N" menggunakan segitiga
 function setGeometry(gl) {
     gl.bufferData(
         gl.ARRAY_BUFFER,
         new Float32Array([
-            // Letter "F" (6 triangles)
-            // Left column (2 triangles)
-            0, 0,   // Triangle 1
+            // Huruf "F" (6 segitiga)
+            // Kolom kiri (2 segitiga)
+            0, 0,   // Segitiga 1
             30, 0,
             0, 150,
 
-            0, 150,   // Triangle 2
+            0, 150,   // Segitiga 2
             30, 0,
             30, 150,
 
-            // Top rung (2 triangles)
-            30, 0,   // Triangle 3
+            // Rung atas (2 segitiga)
+            30, 0,   // Segitiga 3
             100, 0,
             30, 30,
 
-            30, 30,   // Triangle 4
+            30, 30,   // Segitiga 4
             100, 0,
             100, 30,
 
-            // Middle rung (2 triangles)
-            30, 60,   // Triangle 5
+            // Rung tengah (2 segitiga)
+            30, 60,   // Segitiga 5
             67, 60,
             30, 90,
 
-            30, 90,   // Triangle 6
+            30, 90,   // Segitiga 6
             67, 60,
             67, 90,
 
-            // Letter "I" (2 triangles)
-            120, 0,   // Triangle 7
+            // Huruf "I" (2 segitiga)
+            120, 0,   // Segitiga 7
             150, 0,
             120, 150,
 
-            120, 150, // Triangle 8
+            120, 150, // Segitiga 8
             150, 0,
             150, 150,
 
-            // Letter "N" (6 triangles)
-            // Left side (2 triangles)
-            170, 0,   // Triangle 9
+            // Huruf "N" (6 segitiga)
+            // Sisi kiri (2 segitiga)
+            170, 0,   // Segitiga 9
             200, 0,
             170, 150,
 
-            170, 150, // Triangle 10
+            170, 150, // Segitiga 10
             200, 0,
             200, 150,
 
-            // Diagonal (2 triangles)
-            170, 0,   // Triangle 11
+            // Diagonal (2 segitiga)
+            170, 0,   // Segitiga 11
             230, 150,
             200, 150,
 
-            170, 0,   // Triangle 12
+            170, 0,   // Segitiga 12
             200, 0,
             230, 150,
 
-            // Right side (2 triangles)
-            230, 0,   // Triangle 13
+            // Sisi kanan (2 segitiga)
+            230, 0,   // Segitiga 13
             260, 0,
             230, 150,
 
-            230, 150, // Triangle 14
+            230, 150, // Segitiga 14
             260, 0,
             260, 150,
         ]),
