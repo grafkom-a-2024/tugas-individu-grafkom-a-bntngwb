@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+:root {
+    --poppins: 'Poppins', sans-serif;
+    --lato: 'Lato', sans-serif;
+}
+
+/* Apply a full-height to the body and html to ensure full page coverage */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stack child elements vertically */
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0; /* Optional: change the background color */
+    font-family: var(--poppins);
+    position: relative; /* Position relative to place the absolute element correctly */
+}
+
+body > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Heading styling */
+h3 {
+    margin-top: -20px; /* Adjust this value if needed */
+    font-size: medium;
+    font-weight: 600;
+}
+
+/* NRP styling */
+#NRP {
+    color: gray;
+    font-size: small;
+    position: absolute;
+    bottom: 10px; /* Position it 10 pixels from the bottom of the page */
+    width: 100%;
+    text-align: center; /* Center the text horizontally */
+}
