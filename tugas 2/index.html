@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Draw F, I, and N with WebGL</title>
+    <title>Gambar F, I, dan N dengan WebGL</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <canvas id="canvas" width="250" height="200"></canvas>
-    <h3>Bantu Stabilkan Finacial Kamu Di Segala Kondisi</h3>
-    <a target="_blank " href="https://github.com/bntngwb" id="NRP">Bintang Wibi Hanoraga - 5025221034</a>
+    <h3>Bantu Stabilkan Keuangan Kamu Di Segala Kondisi</h3>
+    <a target="_blank" href="https://github.com/bntngwb" id="NRP">Bintang Wibi Hanoraga - 5025221034</a>
 
     <script id="vertex-shader-2d" type="x-shader/x-vertex">
         attribute vec2 a_position;
@@ -17,16 +17,16 @@
         uniform vec2 u_translation;
 
         void main() {
-            // Add in the translation
+            // Tambahkan translasi
             vec2 position = a_position + u_translation;
 
-            // Convert the position from pixels to 0.0 to 1.0
+            // Konversi posisi dari piksel ke 0.0 hingga 1.0
             vec2 zeroToOne = position / u_resolution;
 
-            // Convert from 0->1 to 0->2
+            // Konversi dari 0->1 ke 0->2
             vec2 zeroToTwo = zeroToOne * 2.0;
 
-            // Convert from 0->2 to -1->+1 (clip space)
+            // Konversi dari 0->2 ke -1->+1 (ruang klip)
             vec2 clipSpace = zeroToTwo - 1.0;
 
             gl_Position = vec4(clipSpace * vec2(1, -1), 0, 1);
