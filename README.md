@@ -11,7 +11,6 @@ Tugas-tugas bisa diakses melalui link di bawah ini:
 - [Klik di sini](https://bntngwb.github.io/FIN) untuk mengakses tugas 2.
 
 ### Tugas 3:
-Tugas 3 terdiri dari beberapa sub-poin yang dapat diakses sebagai berikut:
 - [Klik di sini](#) untuk mengakses tugas Texture 
 - [Klik di sini](#) untuk mengakses tugas Lightning
 - [Klik di sini](#) untuk mengakses tugas Cone
