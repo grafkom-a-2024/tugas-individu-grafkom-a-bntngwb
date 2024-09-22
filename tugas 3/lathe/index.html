@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GRAFKOMA_BINTANG</title>
+    <!-- Linking to external CSS file -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <!-- WebGL Canvas -->
+    <canvas id="canvas"></canvas>
+
+    <!-- UI Container -->
+    <div id="uiContainer">
+        <div id="ui">
+            <!-- You can add UI elements here -->
+        </div>
+    </div>
+
+    <!-- Vertex Shader -->
+    <script id="vertex-shader-3d" type="x-shader/x-vertex">
+        attribute vec4 a_position;
+        attribute vec2 a_texcoord;
+
+        uniform mat4 u_matrix;
+
+        varying vec2 v_texcoord;
+
+        void main() {
+            // Multiply the position by the matrix.
+            gl_Position = u_matrix * a_position;
+
+            // Pass the texcoord to the fragment shader.
+            v_texcoord = a_texcoord;
+        }
+    </script>
+
+    <!-- Fragment Shader -->
+    <script id="fragment-shader-3d" type="x-shader/x-fragment">
+        precision mediump float;
+
+        // Passed in from the vertex shader.
+        varying vec2 v_texcoord;
+
+        uniform sampler2D u_texture;
+
+        void main() {
+            // Apply the texture to the fragment
+            gl_FragColor = texture2D(u_texture, v_texcoord);
+        }
+    </script>
+    <h4>Bintang Wibi Hanoraga (5025221034)</h4>
+
+    <!-- External Libraries -->
+    <script src="https://webglfundamentals.org/webgl/resources/webgl-lessons-ui.js"></script>
+    <script src="https://webglfundamentals.org/webgl/resources/webgl-utils.js"></script>
+    <script src="https://webglfundamentals.org/webgl/resources/3d-math.js"></script>
+
+    <!-- Link to your external JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
