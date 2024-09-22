@@ -12,8 +12,8 @@ Tugas-tugas bisa diakses melalui link di bawah ini:
 
 ### Tugas 3:
 Tugas 3 terdiri dari beberapa sub-poin yang dapat diakses sebagai berikut:
-1. Texture: [Klik di sini](#)
-2. Lightning: [Klik di sini](#)
-3. Cone: [Klik di sini](#)
-4. Lathe: [Klik di sini](#)
+- Texture: [Klik di sini](#)
+- Lightning: [Klik di sini](#)
+- Cone: [Klik di sini](#)
+- Lathe: [Klik di sini](#)
   
